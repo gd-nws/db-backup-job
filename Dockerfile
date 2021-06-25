@@ -20,6 +20,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 ######## RUNTIME #######
 FROM alpine:latest
 
+RUN apk add --no-cache \
+  zip
+
 WORKDIR /root/
 
 COPY --from=builder /usr/bin/mongodump /usr/bin/mongodump
